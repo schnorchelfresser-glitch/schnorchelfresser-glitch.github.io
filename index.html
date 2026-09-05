@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lumen Climber</title>
+<meta name="description" content="Lumen Climber — ein Geschicklichkeitsspiel: klettere so hoch du kannst, sammle die leuchtende Bombe und halte deine Kette.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Grotesk:wght@400;500;700&display=swap">
+<style>
+  /* Dieselbe Palette wie im Spiel, damit die Seite als sein Zuhause erkennbar ist. */
+  :root {
+    --void:  #0a0612;
+    --karte: #150e24;
+    --linie: #2c2142;
+    --glow:  #4be0d4;
+    --glow2: #ff5d8f;
+    --ember: #ffc24b;
+    --ink:   #e8e2ff;
+    --dim:   #9c8fb8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px 20px 64px;
+    background:
+      radial-gradient(ellipse at 30% 0%, rgba(75,224,212,0.10), transparent 55%),
+      radial-gradient(ellipse at 80% 100%, rgba(255,93,143,0.10), transparent 55%),
+      var(--void);
+    color: var(--ink);
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    font-size: 16px; line-height: 1.65;
+    -webkit-text-size-adjust: 100%;
+  }
+  .blatt { max-width: 40rem; margin: 0 auto; display: flex; flex-direction: column; gap: 34px; }
+
+  header { text-align: center; }
+  h1 {
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: clamp(30px, 9vw, 52px); letter-spacing: 3px; margin: 0 0 10px;
+    background: linear-gradient(90deg, var(--glow), var(--glow2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .unterzeile { color: var(--dim); margin: 0; font-size: 15px; }
+
+  h2 {
+    font-family: 'Orbitron', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--glow); margin: 0 0 12px;
+  }
+  section { border-top: 1px solid var(--linie); padding-top: 24px; }
+  p { margin: 0 0 12px; }
+  p:last-child { margin-bottom: 0; }
+
+  .regeln { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; }
+  .regeln li { display: grid; grid-template-columns: 14px 1fr; gap: 12px; align-items: start; }
+  .punkt { width: 10px; height: 10px; border-radius: 50%; margin-top: 7px; }
+  .aktiv { background: var(--ember); box-shadow: 0 0 8px rgba(255,194,75,.7); }
+  .bombe { background: #5fd9d3; }
+  .wache { background: var(--glow2); }
+
+  .laden { display: flex; flex-wrap: wrap; gap: 12px; }
+  .knopf {
+    display: inline-block; text-decoration: none;
+    font-family: 'Orbitron', sans-serif; font-size: 12px; letter-spacing: 2px;
+    padding: 12px 20px; border-radius: 10px;
+    border: 1px solid var(--glow); color: var(--glow);
+    background: rgba(75,224,212,0.07);
+  }
+  .knopf:hover, .knopf:focus-visible { background: rgba(75,224,212,0.16); }
+  .knopf.wartet { border-color: var(--linie); color: var(--dim); background: none; cursor: default; }
+
+  a { color: var(--glow); text-underline-offset: 3px; }
+  a:focus-visible, .knopf:focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
+
+  dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; }
+  dt { color: var(--dim); font-size: 14px; }
+  dd { margin: 0; }
+
+  footer { color: var(--dim); font-size: 13px; text-align: center; border-top: 1px solid var(--linie); padding-top: 20px; }
+</style>
+</head>
+<body>
+<div class="blatt">
+
+  <header>
+    <h1>Lumen&nbsp;Climber</h1>
+    <p class="unterzeile">Klettere so hoch du kannst. Ein Sprung, eine Kette, kein Ende nach oben.</p>
+  </header>
+
+  <section>
+    <h2>Worum es geht</h2>
+    <p>Du steigst von Plattform zu Plattform und sammelst Bomben ein. Eine davon leuchtet
+       immer — nimmst du die richtige, wächst deine Kette und mit ihr der Multiplikator.
+       Greifst du daneben, reißt sie.</p>
+    <ul class="regeln">
+      <li><span class="punkt aktiv"></span><span><strong>Aktive Bombe</strong> — die leuchtende. In der richtigen Reihenfolge einsammeln.</span></li>
+      <li><span class="punkt bombe"></span><span><strong>Gewöhnliche Bombe</strong> — Punkte, aber kein Kettenbonus.</span></li>
+      <li><span class="punkt wache"></span><span><strong>Wächter</strong> — ausweichen. Berührung kostet ein Leben.</span></li>
+    </ul>
+    <p style="margin-top:14px">Dazu Bestenlisten, tägliche Level für alle, Duelle gegen andere
+       Spieler und einen wöchentlichen Wettbewerb, in dem die Bestläufe aller Teilnehmer
+       gleichzeitig als Geister neben dir laufen.</p>
+  </section>
+
+  <section>
+    <h2>Herunterladen</h2>
+    <div class="laden">
+      <a class="knopf" href="https://play.google.com/store/apps/details?id=com.lumenclimber.app">Google&nbsp;Play</a>
+      <span class="knopf wartet">App&nbsp;Store — in Vorbereitung</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Hilfe und Kontakt</h2>
+    <p>Fragen, Fehler oder Wünsche? Schreib mir — ich lese jede Nachricht.</p>
+    <p><a href="mailto:info.lionstone@gmx.net">info.lionstone@gmx.net</a></p>
+    <p style="color:var(--dim);font-size:14px">Wenn du einen Fehler meldest, hilft mir die
+       Versionsnummer aus dem Hauptmenü und eine kurze Beschreibung, was du vorher getan hast.</p>
+  </section>
+
+  <section>
+    <h2>Datenschutz</h2>
+    <p>Das Spiel lässt sich ohne Konto spielen. Wer online mitspielen will, legt einen
+       Benutzernamen an; Werbung gibt es ausschließlich als freiwilliges Video für ein
+       zusätzliches Leben.</p>
+    <p><a href="lumenclimber-datenschutz/datenschutz.html">Vollständige Datenschutzerklärung</a></p>
+  </section>
+
+  <section>
+    <h2>Impressum</h2>
+    <p style="color:var(--dim);font-size:14px;margin-bottom:10px">Angaben gemäß § 5 DDG</p>
+    <dl>
+      <dt>Verantwortlich</dt><dd>Dominik Löwenstein</dd>
+      <dt>Anschrift</dt><dd>Kettelerstraße 12<br>45731 Waltrop</dd>
+      <dt>E-Mail</dt><dd><a href="mailto:info.lionstone@gmx.net">info.lionstone@gmx.net</a></dd>
+    </dl>
+  </section>
+
+  <footer>
+    Musik von <a href="https://www.patreon.com/chris_huelsbeck">Chris Hülsbeck</a> ·
+    lizenzfrei verwendet
+  </footer>
+
+</div>
+</body>
+</html>
