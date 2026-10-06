@@ -2,137 +2,256 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lumen Climber</title>
-<meta name="description" content="Lumen Climber — ein Geschicklichkeitsspiel: klettere so hoch du kannst, sammle die leuchtende Bombe und halte deine Kette.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lumen Climber — Neon-Arcade-Kletterer</title>
+<meta name="description" content="Lumen Climber: klettere so hoch du kannst, sammle die leuchtende Bombe und halte deine Kette. Tägliche Level, Duelle, Geister und über 70 Skins — kostenlos für Android und iPhone.">
+<meta name="theme-color" content="#0a0612">
+<meta property="og:title" content="Lumen Climber">
+<meta property="og:description" content="Neon-Arcade-Kletterer mit täglichen Leveln, Duellen und Geistern. Kostenlos für Android und iPhone.">
+<meta property="og:image" content="https://schnorchelfresser-glitch.github.io/bilder/icon-512.png">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="bilder/logo-mark.svg">
+<link rel="apple-touch-icon" href="bilder/icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Grotesk:wght@400;500;700&display=swap">
 <style>
-  /* Dieselbe Palette wie im Spiel, damit die Seite als sein Zuhause erkennbar ist. */
+  /* Dieselbe Palette und dieselben Formen wie im Spiel: der Weltraum des
+     Hauptmenues als Grund, Kaesten mit Tuerkisrand wie die Menues, Knoepfe wie
+     START und die Moduswahl. Wer vom Spiel hierher kommt, soll es wiedererkennen. */
   :root {
     --void:  #0a0612;
-    --karte: #150e24;
-    --linie: #2c2142;
     --glow:  #4be0d4;
     --glow2: #ff5d8f;
     --ember: #ffc24b;
     --ink:   #e8e2ff;
-    --dim:   #9c8fb8;
+    --dim:   #a99dc6;
+    --kasten: rgba(10,6,20,0.82);
+    --linie: rgba(75,224,212,0.22);
   }
   * { box-sizing: border-box; }
+  html { background: var(--void); }
   body {
-    margin: 0; padding: 32px 20px 64px;
-    background:
-      radial-gradient(ellipse at 30% 0%, rgba(75,224,212,0.10), transparent 55%),
-      radial-gradient(ellipse at 80% 100%, rgba(255,93,143,0.10), transparent 55%),
-      var(--void);
+    margin: 0;
     color: var(--ink);
     font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
     font-size: 16px; line-height: 1.65;
     -webkit-text-size-adjust: 100%;
   }
-  .blatt { max-width: 40rem; margin: 0 auto; display: flex; flex-direction: column; gap: 34px; }
+  /* Der Hintergrund steht fest und die Seite laeuft darueber - als eigene Ebene
+     statt background-attachment: fixed, das auf dem iPhone nicht mitspielt. */
+  .himmel {
+    position: fixed; inset: 0; z-index: -1;
+    background: var(--void) url(bilder/hintergrund-hoch.jpg) center top / cover no-repeat;
+  }
+  .himmel::after {      /* nach unten dunkler, damit Text auf jedem Stueck Bild steht */
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(10,6,20,0.10) 0%, rgba(10,6,20,0.55) 55%, rgba(10,6,20,0.80) 100%);
+  }
+  @media (min-aspect-ratio: 1/1) {
+    .himmel { background-image: url(bilder/hintergrund-quer.jpg); background-position: center; }
+  }
 
-  header { text-align: center; }
+  .blatt {
+    max-width: 46rem; margin: 0 auto;
+    padding: 0 16px calc(56px + env(safe-area-inset-bottom));
+    display: flex; flex-direction: column; gap: 22px;
+  }
+
+  /* ---- Kopf: wie das Hauptmenue ---- */
+  header {
+    min-height: min(78vh, 640px);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 72px 0 28px;
+  }
   h1 {
     font-family: 'Orbitron', sans-serif; font-weight: 900;
-    font-size: clamp(30px, 9vw, 52px); letter-spacing: 3px; margin: 0 0 10px;
-    background: linear-gradient(90deg, var(--glow), var(--glow2));
+    font-size: clamp(26px, 8vw, 60px); letter-spacing: 0.06em; line-height: 1.1;
+    margin: 0 0 14px; text-transform: uppercase;
+    background: linear-gradient(90deg, var(--glow) 10%, #b9b0c8 50%, var(--glow2) 92%);
     -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 2px 14px rgba(10,6,20,0.9));
   }
-  .unterzeile { color: var(--dim); margin: 0; font-size: 15px; }
+  .unterzeile {
+    margin: 0 0 30px; max-width: 30rem;
+    font-size: clamp(15px, 4.2vw, 18px); color: var(--ink);
+    text-shadow: 0 1px 10px rgba(10,6,20,0.95), 0 0 2px rgba(10,6,20,0.9);
+  }
 
-  h2 {
-    font-family: 'Orbitron', sans-serif; font-weight: 700;
-    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--glow); margin: 0 0 12px;
+  .laden { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+  .knopf {
+    display: inline-block; text-decoration: none; text-align: center;
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 16px 28px; border-radius: 12px; min-width: 210px;
+    color: var(--void); background: var(--glow);
+    box-shadow: 0 0 26px rgba(75,224,212,0.38);
+    transition: transform .12s ease, box-shadow .12s ease;
   }
-  section { border-top: 1px solid var(--linie); padding-top: 24px; }
+  .knopf small { display: block; font-family: 'Space Grotesk', sans-serif; font-weight: 500;
+    font-size: 11px; letter-spacing: 0.08em; opacity: .75; margin-top: 2px; text-transform: none; }
+  .knopf.gold { background: var(--ember); box-shadow: 0 0 26px rgba(255,194,75,0.32); }
+  .knopf:hover { transform: translateY(-2px); }
+  .knopf:focus-visible, a:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+  .hinweis { margin: 16px 0 0; font-size: 13.5px; color: var(--dim);
+    text-shadow: 0 1px 8px rgba(10,6,20,0.95); max-width: 30rem; }
+
+  /* ---- Einladung ---- */
+  #einladung {
+    margin-top: 26px; padding: 14px 20px; border-radius: 14px;
+    border: 1px solid rgba(255,194,75,.55); background: rgba(20,12,6,0.78);
+  }
+  #einladung .marke { font-family: 'Orbitron', sans-serif; font-size: 10px; letter-spacing: 0.3em; color: var(--ember); }
+  #einladung-code { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 34px;
+    letter-spacing: 0.12em; color: var(--ember); margin: 6px 0 4px; }
+  #einladung .dazu { color: var(--dim); font-size: 14px; }
+
+  /* ---- Kaesten wie die Menues im Spiel ---- */
+  section {
+    background: var(--kasten);
+    border: 2px solid rgba(75,224,212,0.75); border-radius: 18px;
+    box-shadow: 0 0 22px rgba(75,224,212,0.14), inset 0 0 30px rgba(75,224,212,0.03);
+    padding: 22px 20px 24px;
+  }
+  h2 {
+    font-family: 'Orbitron', sans-serif; font-weight: 900;
+    font-size: 15px; letter-spacing: 0.2em; text-transform: uppercase; text-align: center;
+    color: var(--glow); margin: 0 0 16px;
+    text-shadow: 0 0 14px rgba(75,224,212,0.5);
+  }
+  h2.gold { color: var(--ember); text-shadow: 0 0 14px rgba(255,194,75,0.5); }
   p { margin: 0 0 12px; }
   p:last-child { margin-bottom: 0; }
-
-  .regeln { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; }
-  .regeln li { display: grid; grid-template-columns: 14px 1fr; gap: 12px; align-items: start; }
-  .punkt { width: 10px; height: 10px; border-radius: 50%; margin-top: 7px; }
-  .aktiv { background: var(--ember); box-shadow: 0 0 8px rgba(255,194,75,.7); }
-  .bombe { background: #5fd9d3; }
-  .wache { background: var(--glow2); }
-
-  .laden { display: flex; flex-wrap: wrap; gap: 12px; }
-  .knopf {
-    display: inline-block; text-decoration: none;
-    font-family: 'Orbitron', sans-serif; font-size: 12px; letter-spacing: 2px;
-    padding: 12px 20px; border-radius: 10px;
-    border: 1px solid var(--glow); color: var(--glow);
-    background: rgba(75,224,212,0.07);
-  }
-  .knopf:hover, .knopf:focus-visible { background: rgba(75,224,212,0.16); }
-  .knopf.wartet { border-color: var(--linie); color: var(--dim); background: none; cursor: default; }
-
+  .leise { color: var(--dim); font-size: 14px; }
   a { color: var(--glow); text-underline-offset: 3px; }
-  a:focus-visible, .knopf:focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
 
-  dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; }
+  .regeln { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-direction: column; gap: 9px; }
+  .regeln li { display: grid; grid-template-columns: 14px 1fr; gap: 12px; align-items: start; }
+  .punkt { width: 11px; height: 11px; border-radius: 50%; margin-top: 7px; }
+  .aktiv { background: var(--ember); box-shadow: 0 0 10px rgba(255,194,75,.8); }
+  .bombe { background: #6f8f95; }
+  .wache { background: var(--glow2); box-shadow: 0 0 8px rgba(255,93,143,.6); }
+
+  /* ---- Bildschirmfotos: waagrecht wischen ---- */
+  .bilder {
+    display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory;
+    margin: 0 -20px; padding: 4px 20px 12px; -webkit-overflow-scrolling: touch;
+  }
+  .bilder figure { margin: 0; flex: 0 0 auto; width: min(58vw, 230px); scroll-snap-align: center; }
+  .bilder img { display: block; width: 100%; height: auto; aspect-ratio: 540 / 1173;
+    border-radius: 16px; border: 1px solid rgba(232,226,255,0.18); background: #120b20; }
+  .bilder figcaption { font-family: 'Orbitron', sans-serif; font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--dim); text-align: center; margin-top: 8px; }
+
+  /* ---- Spielarten ---- */
+  .modi { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+  .modus { border: 1px solid var(--linie); border-radius: 12px; padding: 11px 14px; background: rgba(75,224,212,0.04); }
+  .modus b { display: block; font-family: 'Orbitron', sans-serif; font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink); margin-bottom: 2px; }
+  .modus span { color: var(--dim); font-size: 14px; line-height: 1.45; display: block; }
+
+  /* minmax(0,1fr) und anywhere: die Mailadresse laesst sich sonst nicht umbrechen
+     und schob die Seite auf einem 320 px breiten Telefon 22 px ueber den Rand. */
+  dl { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 5px 14px; }
   dt { color: var(--dim); font-size: 14px; }
-  dd { margin: 0; }
+  dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
 
-  footer { color: var(--dim); font-size: 13px; text-align: center; border-top: 1px solid var(--linie); padding-top: 20px; }
+  footer { color: var(--dim); font-size: 13px; text-align: center; padding-top: 6px;
+    text-shadow: 0 1px 8px rgba(10,6,20,0.95); }
+
+  @media (prefers-reduced-motion: reduce) { .knopf { transition: none; } .knopf:hover { transform: none; } }
 </style>
 </head>
 <body>
+<div class="himmel" aria-hidden="true"></div>
 <div class="blatt">
 
   <header>
     <h1>Lumen&nbsp;Climber</h1>
     <p class="unterzeile">Klettere so hoch du kannst. Ein Sprung, eine Kette, kein Ende nach oben.</p>
+    <div class="laden">
+      <a class="knopf" href="https://play.google.com/store/apps/details?id=com.lumenclimber.app">Google&nbsp;Play<small>Android</small></a>
+      <a class="knopf gold" href="https://testflight.apple.com/join/1bJ2RfmC">iPhone<small>Testfassung über TestFlight</small></a>
+    </div>
+    <p class="hinweis">Kostenlos, ohne In-App-Käufe. Auf dem iPhone läuft die App zurzeit als
+      Testfassung: Apples TestFlight-App installieren, dann den Link öffnen.</p>
+    <!-- Wer ueber einen Einladungs-QR kommt, bringt den Code in der Adresse mit.
+         Ihn hier gross zu zeigen erspart das Abtippen von einem fremden Bildschirm. -->
+    <div id="einladung" hidden>
+      <div class="marke">DEIN EINLADUNGSCODE</div>
+      <div id="einladung-code"></div>
+      <div class="dazu">Bei der Anmeldung im Spiel eingeben — dafür gibt es sofort 1.000 Coins.</div>
+    </div>
   </header>
 
   <section>
+    <h2>So sieht es aus</h2>
+    <div class="bilder">
+      <figure><img src="bilder/klettern.jpg" width="540" height="1173" loading="lazy" alt="Spielszene: die Figur klettert mit einer 64er-Kette und Regenbogenspur zwischen Plattformen, Bomben und Wächtern"><figcaption>Klettern</figcaption></figure>
+      <figure><img src="bilder/supernova.jpg" width="540" height="1173" loading="lazy" alt="Spielszene im Modus Supernova: von unten steigt eine glühende Sonne auf"><figcaption>Supernova</figcaption></figure>
+      <figure><img src="bilder/blackhole.jpg" width="540" height="1173" loading="lazy" alt="Spielszene im Modus Black Hole: die Welt dreht sich um einen Ring"><figcaption>Black Hole</figcaption></figure>
+      <figure><img src="bilder/shop.jpg" width="540" height="1173" loading="lazy" alt="Shop mit Belohnungs-Skins wie Phoenix, Sun King und Mountaineer"><figcaption>Belohnungs-Skins</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
     <h2>Worum es geht</h2>
-    <p>Du steigst von Plattform zu Plattform und sammelst Bomben ein. Eine davon leuchtet
-       immer — nimmst du die richtige, wächst deine Kette und mit ihr der Multiplikator.
-       Greifst du daneben, reißt sie.</p>
+    <p>Du springst von Plattform zu Plattform und sammelst Bomben ein. Eine davon leuchtet
+       immer — nimmst du die leuchtenden der Reihe nach, wächst deine Kette und mit ihr der
+       Multiplikator. Greifst du daneben, reißt sie.</p>
     <ul class="regeln">
       <li><span class="punkt aktiv"></span><span><strong>Aktive Bombe</strong> — die leuchtende. In der richtigen Reihenfolge einsammeln.</span></li>
       <li><span class="punkt bombe"></span><span><strong>Gewöhnliche Bombe</strong> — Punkte, aber kein Kettenbonus.</span></li>
       <li><span class="punkt wache"></span><span><strong>Wächter</strong> — ausweichen. Berührung kostet ein Leben.</span></li>
     </ul>
-    <p style="margin-top:14px">Dazu Bestenlisten, tägliche Level für alle, Duelle gegen andere
-       Spieler und einen wöchentlichen Wettbewerb, in dem die Bestläufe aller Teilnehmer
-       gleichzeitig als Geister neben dir laufen.</p>
   </section>
 
   <section>
-    <h2>Herunterladen</h2>
-    <div class="laden">
-      <a class="knopf" href="https://play.google.com/store/apps/details?id=com.lumenclimber.app">Google&nbsp;Play</a>
-      <span class="knopf wartet">App&nbsp;Store — in Vorbereitung</span>
+    <h2 class="gold">Spielarten</h2>
+    <div class="modi">
+      <div class="modus"><b>Random</b><span>Jede Runde ein neues Level.</span></div>
+      <div class="modus"><b>Daily &amp; Weekly</b><span>Ein Level für alle — die Geister der anderen laufen neben dir.</span></div>
+      <div class="modus"><b>Supernova</b><span>Lauf einer aufsteigenden Sonne davon.</span></div>
+      <div class="modus"><b>Abyss</b><span>Dasselbe Spiel, nur abwärts.</span></div>
+      <div class="modus"><b>Black Hole</b><span>Dreh Runden um einen Ring.</span></div>
+      <div class="modus"><b>Ghost</b><span>Tritt gegen die Aufzeichnung eines beliebigen Laufs an.</span></div>
+      <div class="modus"><b>Duell &amp; Turnier</b><span>Zwei Runden gegen einen Gegner, oder K.-o. im Feld.</span></div>
+      <div class="modus"><b>Versus live</b><span>Versus, Time Warp, Co-op und Royal Rumble.</span></div>
     </div>
+    <p style="margin-top:16px">Dazu über 70 Skins, Spuren und Auren, Belohnungs-Skins für Tagesserien,
+       Höhe, Punkte und lange Ketten, 22 Upgrades in eigenen Ligen — und aus jedem Lauf
+       wird auf Wunsch ein Video.</p>
   </section>
 
   <section>
     <h2>Hilfe und Kontakt</h2>
     <p>Fragen, Fehler oder Wünsche? Schreib mir — ich lese jede Nachricht.</p>
     <p><a href="mailto:info.lionstone@gmx.net">info.lionstone@gmx.net</a></p>
-    <p style="color:var(--dim);font-size:14px">Wenn du einen Fehler meldest, hilft mir die
-       Versionsnummer aus dem Hauptmenü und eine kurze Beschreibung, was du vorher getan hast.</p>
+    <p class="leise">Wenn du einen Fehler meldest, hilft mir die Versionsnummer aus dem
+       Hauptmenü und eine kurze Beschreibung, was du vorher getan hast.</p>
+    <p class="leise">Passwort vergessen? Schreib von der Adresse, die du im Spiel als
+       Wiederherstellungs-Mail hinterlegt hast — du bekommst einen Rücksetzcode.</p>
   </section>
 
   <section>
     <h2>Datenschutz</h2>
-    <p>Das Spiel lässt sich ohne Konto spielen. Wer online mitspielen will, legt einen
-       Benutzernamen an; Werbung gibt es ausschließlich als freiwilliges Video für ein
-       zusätzliches Leben.</p>
+    <p>Random lässt sich ohne Konto spielen. Für Bestenlisten, Challenges, Shop und
+       Mehrspieler legst du ein kostenloses Konto an — Spielername und Passwort, keine
+       E-Mail nötig. Werbung gibt es ausschließlich als freiwilliges Video, etwa für ein
+       Extraleben, Bonus-Coins oder ein Los.</p>
+    <p><strong>Konto löschen:</strong> jederzeit selbst in der App unter
+       Einstellungen → Account → „Delete account“. Damit werden deine Läufe,
+       Aufzeichnungen, Coins und Gegenstände endgültig gelöscht.</p>
     <p><a href="lumenclimber-datenschutz/datenschutz.html">Vollständige Datenschutzerklärung</a></p>
   </section>
 
   <section>
     <h2>Impressum</h2>
-    <p style="color:var(--dim);font-size:14px;margin-bottom:10px">Angaben gemäß § 5 DDG</p>
+    <p class="leise" style="margin-bottom:10px">Angaben gemäß § 5 DDG</p>
     <dl>
       <dt>Verantwortlich</dt><dd>Dominik Löwenstein</dd>
       <dt>Anschrift</dt><dd>Kettelerstraße 12<br>45731 Waltrop</dd>
+      <dt>Telefon</dt><dd><a href="tel:+492309627054">+49 2309 627054</a></dd>
       <dt>E-Mail</dt><dd><a href="mailto:info.lionstone@gmx.net">info.lionstone@gmx.net</a></dd>
     </dl>
   </section>
@@ -143,5 +262,21 @@
   </footer>
 
 </div>
+
+<script>
+  // Der Code steht in der Adresse (?r=ABC123), wenn jemand ueber eine Einladung kommt.
+  // Streng gefiltert, weil er ungeprueft aus der Adresszeile stammt: nur Buchstaben und
+  // Ziffern, hoechstens 24 Zeichen, und per textContent gesetzt statt per innerHTML.
+  (function () {
+    try {
+      var roh = new URLSearchParams(location.search).get('r');
+      if (!roh) return;
+      var code = roh.trim().slice(0, 24).replace(/[^A-Za-z0-9_-]/g, '');
+      if (!code) return;
+      document.getElementById('einladung-code').textContent = code.toUpperCase();
+      document.getElementById('einladung').hidden = false;
+    } catch (e) { /* ohne Code bleibt der Kasten einfach verborgen */ }
+  })();
+</script>
 </body>
 </html>
