@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-310 -300 880 540" width="880" height="540">
+<!-- Rentier zieht das Weihnachts-Maskottchen an der Leine. Erzeugt von store/app-store/grafik/weihnachten_svg.py. -->
+<defs>
+  <radialGradient id="aura"><stop offset="0" stop-color="#4be0d4" stop-opacity=".45"/><stop offset="1" stop-color="#4be0d4" stop-opacity="0"/></radialGradient>
+  <radialGradient id="koerper" cx=".38" cy=".3" r=".8"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#e8e2ff"/><stop offset="1" stop-color="#b9b0d8"/></radialGradient>
+  <radialGradient id="rot" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#ff5a6a"/><stop offset="1" stop-color="#b8142c"/></radialGradient>
+  <radialGradient id="fell" cx=".4" cy=".3" r=".9"><stop offset="0" stop-color="#b98458"/><stop offset="1" stop-color="#7a5232"/></radialGradient>
+  <clipPath id="leib"><ellipse rx="80" ry="112"/></clipPath>
+</defs>
+<circle r="170" fill="url(#aura)"/>
+<g stroke="#e8e2ff" stroke-linecap="round" opacity=".35" stroke-width="5">
+  <line x1="-120" y1="-60" x2="-180" y2="-40"/><line x1="-110" y1="-20" x2="-200" y2="5"/><line x1="-125" y1="-100" x2="-165" y2="-88"/>
+</g>
+<path d="M-86 62 C-150 150 -210 40 -300 170" fill="none" stroke="#6d6390" stroke-width="3"/><g transform="translate(-104.2 82.1) rotate(230)"><circle r="15" fill="#2fd673" opacity=".28"/><rect x="-3.5" y="-11" width="7" height="6" rx="1.5" fill="#4a4060"/><ellipse cy="2" rx="6.5" ry="9" fill="#2fd673"/><ellipse cx="-2" cy="-1" rx="1.8" ry="3" fill="#fff" opacity=".6"/></g><g transform="translate(-122.4 93.8) rotate(247)"><circle r="15" fill="#ffc83c" opacity=".28"/><rect x="-3.5" y="-11" width="7" height="6" rx="1.5" fill="#4a4060"/><ellipse cy="2" rx="6.5" ry="9" fill="#ffc83c"/><ellipse cx="-2" cy="-1" rx="1.8" ry="3" fill="#fff" opacity=".6"/></g><g transform="translate(-140.7 99.2) rotate(261)"><circle r="15" fill="#ff3b55" opacity=".28"/><rect x="-3.5" y="-11" width="7" height="6" rx="1.5" fill="#4a4060"/><ellipse cy="2" rx="6.5" ry="9" fill="#ff3b55"/><ellipse cx="-2" cy="-1" rx="1.8" ry="3" fill="#fff" opacity=".6"/></g><g transform="translate(-159.3 100.6) rotate(270)"><circle r="15" fill="#2fd673" opacity=".28"/><rect x="-3.5" y="-11" width="7" height="6" rx="1.5" fill="#4a4060"/><ellipse cy="2" rx="6.5" ry="9" fill="#2fd673"/><ellipse cx="-2" cy="-1" rx="1.8" ry="3" fill="#fff" opacity=".6"/></g><g transform="translate(-178.4 100.3) rotate(-89)"><circle r="15" fill="#ffc83c" opacity=".28"/><rect x="-3.5" y="-11" width="7" height="6" rx="1.5" fill="#4a4060"/><ellipse cy="2" rx="6.5" ry="9" fill="#ffc83c"/><ellipse cx="-2" cy="-1" rx="1.8" ry="3" fill="#fff" opacity=".6"/></g><g transform="translate(-198.1 100.6) rotate(266)"><circle r="15" fill="#ff3b55" opacity=".28"/><rect x="-3.5" y="-11" width="7" height="6" rx="1.5" fill="#4a4060"/><ellipse cy="2" rx="6.5" ry="9" fill="#ff3b55"/><ellipse cx="-2" cy="-1" rx="1.8" ry="3" fill="#fff" opacity=".6"/></g><g transform="translate(-218.7 103.8) rotate(255)"><circle r="15" fill="#2fd673" opacity=".28"/><rect x="-3.5" y="-11" width="7" height="6" rx="1.5" fill="#4a4060"/><ellipse cy="2" rx="6.5" ry="9" fill="#2fd673"/><ellipse cx="-2" cy="-1" rx="1.8" ry="3" fill="#fff" opacity=".6"/></g><g transform="translate(-240.4 112.0) rotate(242)"><circle r="15" fill="#ffc83c" opacity=".28"/><rect x="-3.5" y="-11" width="7" height="6" rx="1.5" fill="#4a4060"/><ellipse cy="2" rx="6.5" ry="9" fill="#ffc83c"/><ellipse cx="-2" cy="-1" rx="1.8" ry="3" fill="#fff" opacity=".6"/></g><g transform="translate(-263.2 127.7) rotate(229)"><circle r="15" fill="#ff3b55" opacity=".28"/><rect x="-3.5" y="-11" width="7" height="6" rx="1.5" fill="#4a4060"/><ellipse cy="2" rx="6.5" ry="9" fill="#ff3b55"/><ellipse cx="-2" cy="-1" rx="1.8" ry="3" fill="#fff" opacity=".6"/></g><g transform="translate(-287.3 153.0) rotate(218)"><circle r="15" fill="#2fd673" opacity=".28"/><rect x="-3.5" y="-11" width="7" height="6" rx="1.5" fill="#4a4060"/><ellipse cy="2" rx="6.5" ry="9" fill="#2fd673"/><ellipse cx="-2" cy="-1" rx="1.8" ry="3" fill="#fff" opacity=".6"/></g>
+<g transform="rotate(-12 0 58)"><path d="M-92.0 58.0 L-91.5 55.5 L-90.0 53.0 L-87.5 50.6 L-84.0 48.2 L-79.7 46.0 L-74.4 43.9 L-68.4 41.9 L-61.6 40.2 L-54.1 38.6 L-46.0 37.2 L-37.4 36.1 L-28.4 35.2 L-19.1 34.5 L-9.6 34.1 L-0.0 34.0 L9.6 34.1 L19.1 34.5 L28.4 35.2 L37.4 36.1 L46.0 37.2 L54.1 38.6 L61.6 40.2 L68.4 41.9 L74.4 43.9 L79.7 46.0 L84.0 48.2 L87.5 50.6 L90.0 53.0 L91.5 55.5 L92.0 58.0" fill="none" stroke="#6d6390" stroke-width="3"/></g>
+<path d="M8 108 Q20 135 14 152" fill="none" stroke="#ffc83c" stroke-width="3"/>
+<g transform="translate(16 182) rotate(9)">
+  <rect x="-34" y="-28" width="68" height="56" rx="6" fill="url(#rot)"/>
+  <rect x="-38" y="-34" width="76" height="16" rx="4" fill="#d81e3a"/>
+  <rect x="-6" y="-34" width="12" height="62" fill="#ffc83c"/>
+  <ellipse cx="-14" cy="-40" rx="14" ry="8" fill="none" stroke="#ffc83c" stroke-width="5" transform="rotate(-20 -14 -40)"/>
+  <ellipse cx="14" cy="-40" rx="14" ry="8" fill="none" stroke="#ffc83c" stroke-width="5" transform="rotate(20 14 -40)"/>
+  <!-- das Geschenk guckt, wie der Present-Skin im Spiel -->
+  <circle cx="-18" cy="-4" r="7" fill="#fff"/><circle cx="18" cy="-4" r="7" fill="#fff"/>
+  <circle cx="-15" cy="-3" r="3.5" fill="#0a0612"/><circle cx="21" cy="-3" r="3.5" fill="#0a0612"/>
+</g>
+<ellipse rx="80" ry="112" fill="url(#koerper)"/>
+<rect x="-80" y="-16" width="160" height="48" fill="#4be0d4" clip-path="url(#leib)"/>
+<ellipse cx="26" cy="-46" rx="34" ry="25" fill="#0a0612"/>
+<ellipse cx="38" cy="-36" rx="10" ry="4.5" fill="#fff" opacity=".45" transform="rotate(-18 38 -36)"/>
+<circle cx="14" cy="-40" r="6" fill="#4be0d4"/>
+<path d="M33 -41 q7 -6 14 0" fill="none" stroke="#4be0d4" stroke-width="4.5" stroke-linecap="round"/>
+<g transform="rotate(-12 0 58)"><path d="M92.0 58.0 L91.5 60.5 L90.0 63.0 L87.5 65.4 L84.0 67.8 L79.7 70.0 L74.4 72.1 L68.4 74.1 L61.6 75.8 L54.1 77.4 L46.0 78.8 L37.4 79.9 L28.4 80.8 L19.1 81.5 L9.6 81.9 L0.0 82.0 L-9.6 81.9 L-19.1 81.5 L-28.4 80.8 L-37.4 79.9 L-46.0 78.8 L-54.1 77.4 L-61.6 75.8 L-68.4 74.1 L-74.4 72.1 L-79.7 70.0 L-84.0 67.8 L-87.5 65.4 L-90.0 63.0 L-91.5 60.5 L-92.0 58.0" fill="none" stroke="#6d6390" stroke-width="3"/><g transform="translate(88.9 64.2) rotate(150)"><circle r="15" fill="#ff3b55" opacity=".28"/><rect x="-3.5" y="-11" width="7" height="6" rx="1.5" fill="#4a4060"/><ellipse cy="2" rx="6.5" ry="9" fill="#ff3b55"/><ellipse cx="-2" cy="-1" rx="1.8" ry="3" fill="#fff" opacity=".6"/></g><g transform="translate(67.3 74.4) rotate(161)"><circle r="15" fill="#2fd673" opacity=".28"/><rect x="-3.5" y="-11" width="7" height="6" rx="1.5" fill="#4a4060"/><ellipse cy="2" rx="6.5" ry="9" fill="#2fd673"/><ellipse cx="-2" cy="-1" rx="1.8" ry="3" fill="#fff" opacity=".6"/></g><g transform="translate(30.0 80.7) rotate(172)"><circle r="15" fill="#ffc83c" opacity=".28"/><rect x="-3.5" y="-11" width="7" height="6" rx="1.5" fill="#4a4060"/><ellipse cy="2" rx="6.5" ry="9" fill="#ffc83c"/><ellipse cx="-2" cy="-1" rx="1.8" ry="3" fill="#fff" opacity=".6"/></g><g transform="translate(-14.4 81.7) rotate(184)"><circle r="15" fill="#ff3b55" opacity=".28"/><rect x="-3.5" y="-11" width="7" height="6" rx="1.5" fill="#4a4060"/><ellipse cy="2" rx="6.5" ry="9" fill="#ff3b55"/><ellipse cx="-2" cy="-1" rx="1.8" ry="3" fill="#fff" opacity=".6"/></g><g transform="translate(-55.4 77.2) rotate(195)"><circle r="15" fill="#2fd673" opacity=".28"/><rect x="-3.5" y="-11" width="7" height="6" rx="1.5" fill="#4a4060"/><ellipse cy="2" rx="6.5" ry="9" fill="#2fd673"/><ellipse cx="-2" cy="-1" rx="1.8" ry="3" fill="#fff" opacity=".6"/></g><g transform="translate(-83.4 68.1) rotate(206)"><circle r="15" fill="#ffc83c" opacity=".28"/><rect x="-3.5" y="-11" width="7" height="6" rx="1.5" fill="#4a4060"/><ellipse cy="2" rx="6.5" ry="9" fill="#ffc83c"/><ellipse cx="-2" cy="-1" rx="1.8" ry="3" fill="#fff" opacity=".6"/></g></g>
+<g transform="translate(4 20) rotate(-17)">
+  <path d="M-70 -92 C-58 -170 -10 -222 52 -214 C96 -208 120 -170 118 -138 C104 -168 74 -186 40 -178 C66 -150 70 -118 66 -100 Z" fill="url(#rot)" transform="scale(-1 1)"/>
+  <circle cx="-118" cy="-128" r="22" fill="#fff"/>
+  <circle cx="-124" cy="-134" r="8" fill="#ffffff" opacity=".7"/>
+  <rect x="-84" y="-112" width="168" height="34" rx="17" fill="#f4f1ff"/>
+  <g fill="#d9d3ee"><circle cx="-60" cy="-92" r="5"/><circle cx="-20" cy="-98" r="5"/><circle cx="22" cy="-92" r="5"/><circle cx="58" cy="-99" r="5"/></g>
+</g>
+<path d="M80 6 C180 -6 270 -50 352 -92" fill="none" stroke="#d81e3a" stroke-width="5" stroke-linecap="round"/>
+<g transform="translate(330 -120) rotate(-14) scale(.95)"><g>
+  <g stroke="#e1c391" stroke-width="12" stroke-linecap="round" fill="none">
+    <path d="M16 -64 L0 -128 M6 -104 L-24 -124 M10 -84 L-16 -88"/>
+    <path d="M44 -68 L52 -128 M50 -104 L76 -120"/>
+  </g>
+  <g fill="#5a3c28">
+    <rect x="-70" y="56" width="18" height="52" rx="8" transform="rotate(35 -61 56)"/>
+    <rect x="-40" y="56" width="18" height="52" rx="8" transform="rotate(25 -31 56)"/>
+    <rect x="4" y="56" width="18" height="52" rx="8" transform="rotate(-35 13 56)"/>
+    <rect x="30" y="50" width="18" height="52" rx="8" transform="rotate(-50 39 50)"/>
+  </g>
+  <ellipse cx="-16" cy="40" rx="68" ry="48" fill="url(#fell)"/>
+  <path d="M8 16 L24 -32 L56 -16 L40 32 Z" fill="url(#fell)"/>
+  <circle cx="36" cy="-36" r="40" fill="url(#fell)"/>
+  <ellipse cx="4" cy="-64" rx="11" ry="24" fill="#8a603e" transform="rotate(-40 4 -64)"/>
+  <circle cx="-82" cy="16" r="14" fill="#ebe1d2"/>
+  <ellipse cx="68" cy="-20" rx="29" ry="22" fill="#cda57d"/>
+  <circle cx="44" cy="-48" r="9.6" fill="#0a0612"/>
+  <circle cx="47" cy="-51" r="3" fill="#fff"/>
+  <!-- Grinsen: das Rentier hat Spass, das Maskottchen eher nicht -->
+  <path d="M60 -6 q12 10 26 0" fill="none" stroke="#5a3c28" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="90" cy="-24" r="28" fill="#ff3b55" opacity=".3"/>
+  <circle cx="90" cy="-24" r="18" fill="#ff3b55"/>
+  <circle cx="84" cy="-30" r="5" fill="#fff" opacity=".6"/>
+  <!-- Geschirr mit Gloeckchen -->
+  <path d="M-4 6 Q20 26 44 14" fill="none" stroke="#d81e3a" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="20" cy="26" r="8" fill="#ffc83c"/><circle cx="20" cy="29" r="2.5" fill="#7a5a10"/>
+</g></g>
+</svg>
